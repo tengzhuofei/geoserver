@@ -58,10 +58,10 @@ RUN \
 
 #
 # GEOSERVER INSTALLATION
-#
+#http://downloads.sourceforge.net/project/geoserver/GeoServer/2.17.0/geoserver-2.17.0-bin.zip
 
 # Install GeoServer
-RUN curl -sS -L -O https://sourceforge.net/projects/geoserver/files/GeoServer/$GEOSERVER_VERSION/geoserver-$GEOSERVER_VERSION-bin.zip && \
+RUN curl -sS -L -O http://downloads.sourceforge.net/project/geoserver/GeoServer/$GEOSERVER_VERSION/geoserver-$GEOSERVER_VERSION-bin.zip && \
     unzip geoserver-$GEOSERVER_VERSION-bin.zip && mv -v geoserver-$GEOSERVER_VERSION $GEOSERVER_HOME && \
     rm geoserver-$GEOSERVER_VERSION-bin.zip && \
     sed -e 's/>PARTIAL-BUFFER2</>SPEED</g' -i $GEOSERVER_HOME/webapps/geoserver/WEB-INF/web.xml && \
