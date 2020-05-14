@@ -53,16 +53,17 @@ RUN \
 # Get posgresql driver
 RUN \
     cd $JAVA_HOME/lib/ext/ && \
-    curl -L -sS -O https://jdbc.postgresql.org/download/postgresql-${POSGRESQL_VERSION}.jar 
+    curl -L -sS -O https://jdbc.postgresql.org/download/postgresql-${POSGRESQL_VERSION}.jar
     #sed -i 's/^assistive_technologies=/#&/' /etc/java-8-openjdk/accessibility.properties
 
 #
 # GEOSERVER INSTALLATION
-#http://downloads.sourceforge.net/project/geoserver/GeoServer/2.17.0/geoserver-2.17.0-bin.zip
+#
 
 # Install GeoServer
-RUN curl -sS -L -O http://downloads.sourceforge.net/project/geoserver/GeoServer/$GEOSERVER_VERSION/geoserver-$GEOSERVER_VERSION-bin.zip && \
-    unzip geoserver-$GEOSERVER_VERSION-bin.zip && mv -v geoserver-$GEOSERVER_VERSION $GEOSERVER_HOME && \
+RUN curl -sS -L -O https://sourceforge.net/projects/geoserver/files/GeoServer/$GEOSERVER_VERSION/geoserver-$GEOSERVER_VERSION-bin.zip && \
+    mkdir -p geoserver-$GEOSERVER_VERSION && \
+    unzip geoserver-$GEOSERVER_VERSION-bin.zip -d geoserver-$GEOSERVER_VERSION && ls ./ && mv -v geoserver-$GEOSERVER_VERSION $GEOSERVER_HOME && \
     rm geoserver-$GEOSERVER_VERSION-bin.zip && \
     sed -e 's/>PARTIAL-BUFFER2</>SPEED</g' -i $GEOSERVER_HOME/webapps/geoserver/WEB-INF/web.xml && \
     # Remove old JAI from geoserver
