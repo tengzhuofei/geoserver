@@ -53,8 +53,8 @@ RUN \
 # Get posgresql driver
 RUN \
     cd $JAVA_HOME/lib/ext/ && \
-    curl -L -sS -O https://jdbc.postgresql.org/download/postgresql-${POSGRESQL_VERSION}.jar && \
-    sed -i 's/^assistive_technologies=/#&/' /etc/java-8-openjdk/accessibility.properties
+    curl -L -sS -O https://jdbc.postgresql.org/download/postgresql-${POSGRESQL_VERSION}.jar 
+    #sed -i 's/^assistive_technologies=/#&/' /etc/java-8-openjdk/accessibility.properties
 
 #
 # GEOSERVER INSTALLATION
