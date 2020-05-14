@@ -4,7 +4,7 @@ LABEL maintainer "Mikko Rauhala <mikko@meteo.fi>"
 ARG GEOSERVER_VERSION="2.17.0"
 
 # persistent / runtime deps
-RUN apt-get update && apt-get install -y --no-install-recommends libnetcdf-c++4 curl && rm -r /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends libnetcdf-c++4 curl unzip && rm -r /var/lib/apt/lists/*
 
 ENV NOTO_FONTS="NotoSans-unhinted NotoSerif-unhinted NotoMono-hinted" \
     GOOGLE_FONTS="Open%20Sans Roboto Lato Ubuntu" \
