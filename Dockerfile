@@ -1,4 +1,5 @@
-FROM docker.io/openjdk:8-jre-slim
+#FROM docker.io/openjdk:8-jre-slim
+FROM docker.io/openjdk:8-jre
 LABEL maintainer "Mikko Rauhala <mikko@meteo.fi>"
 
 ARG GEOSERVER_VERSION="2.17.0"
