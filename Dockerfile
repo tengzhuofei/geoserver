@@ -13,8 +13,8 @@ ENV NOTO_FONTS="NotoSans-unhinted NotoSerif-unhinted NotoMono-hinted" \
     GEOSERVER_HOME="/usr/share/geoserver" \
     GEOSERVER_NODE_OPTS='id:$host_name' \
     JAVA_OPTS="-XX:+UseG1GC" \
-    JETTY_VERSION="9.4.12.v20180830" \
-    POSGRESQL_VERSION="42.2.5"
+    JETTY_VERSION="9.4.18.v20190429" \
+    POSGRESQL_VERSION="42.2.12"
 
 # Install Google Noto fonts
 RUN mkdir -p /usr/share/fonts/truetype/noto && \
