@@ -92,12 +92,12 @@ RUN \
 COPY jetty-jndi.xml $GEOSERVER_HOME/data_dir/
 
 # Install GeoServer Plugins
-RUN for PLUGIN in ${GEOSERVER_PLUGINS}; \
-    do \
-      curl -sS -L -O https://sourceforge.net/projects/geoserver/files/GeoServer/$GEOSERVER_VERSION/extensions/geoserver-$GEOSERVER_VERSION-$PLUGIN-plugin.zip && \
-      unzip -o geoserver-$GEOSERVER_VERSION-$PLUGIN-plugin.zip -d /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/ && \
-      rm geoserver-$GEOSERVER_VERSION-$PLUGIN-plugin.zip ; \
-    done
+# RUN for PLUGIN in ${GEOSERVER_PLUGINS}; \
+#    do \
+#      curl -sS -L -O https://sourceforge.net/projects/geoserver/files/GeoServer/$GEOSERVER_VERSION/extensions/geoserver-$GEOSERVER_VERSION-$PLUGIN-plugin.zip && \
+#      unzip -o geoserver-$GEOSERVER_VERSION-$PLUGIN-plugin.zip -d /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/ && \
+#      rm geoserver-$GEOSERVER_VERSION-$PLUGIN-plugin.zip ; \
+#    done
 
 # install elastic plugins
 COPY elasticgeo-2.16.0.jar /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
