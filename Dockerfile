@@ -118,6 +118,8 @@ RUN mkdir -p $GEOSERVER_HOME && \
 ### Containers should NOT run as root as a good practice
 USER 101010
 
+RUN chmod +x /docker-entrypoint.sh
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["geoserver"]
 
