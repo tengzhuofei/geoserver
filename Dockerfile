@@ -115,10 +115,10 @@ RUN mkdir -p $GEOSERVER_HOME && \
     chgrp -R 0 $GEOSERVER_HOME && \
     chmod -R g=u $GEOSERVER_HOME /etc/passwd /var/log
 
+RUN chmod +x /docker-entrypoint.sh
+
 ### Containers should NOT run as root as a good practice
 USER 101010
-
-RUN chmod +x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["geoserver"]
