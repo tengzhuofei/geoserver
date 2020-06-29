@@ -103,7 +103,7 @@ COPY jetty-jndi.xml $GEOSERVER_HOME/data_dir/
 # install geomesa cassandra plugins
 COPY lib/* /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
 
-RUN -sS -L -O /tmp https://github.com/locationtech/geomesa/releases/download/geomesa_2.11-3.0.0/geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz && \
+RUN curl -sS -L -O /tmp https://github.com/locationtech/geomesa/releases/download/geomesa_2.11-3.0.0/geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz && \
     tar -xvf geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz && mv /tmp/geomesa-cassandra_2.11-3.0.0/dist/gs-plugins/* /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
 
 RUN ls /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
