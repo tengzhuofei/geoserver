@@ -103,8 +103,15 @@ COPY jetty-jndi.xml $GEOSERVER_HOME/data_dir/
 # install geomesa cassandra plugins
 COPY lib/* /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
 
-RUN curl -sS -L -o /tmp/geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz https://github.com/locationtech/geomesa/releases/download/geomesa_2.11-3.0.0/geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz && \
-    tar -xvf geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz && mv /tmp/geomesa-cassandra_2.11-3.0.0/dist/gs-plugins/* /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
+RUN wget -P /tmp/ https://github.com/locationtech/geomesa/releases/download/geomesa_2.11-3.0.0/geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz && \
+    tar -xvf geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz && mv geomesa-cassandra_2.11-3.0.0/dist/gs-plugins/* /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
+
+RUN tar -xvf /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/geomesa-cassandra-gs-plugin_2.11-3.0.0-install.tar.gz -C /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
+
+RUN rm -rf geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/geomesa-cassandra-gs-plugin_2.11-3.0.0-install.tar.gz
+
+RUN cd /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/ && rm -rf commons-lang3-3.7.jar commons-pool-1.5.4.jar commons-text-1.4.jar
+RUN rm -rf geomesa-cassandra_2.11-3.0.0
 
 RUN ls /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
 
