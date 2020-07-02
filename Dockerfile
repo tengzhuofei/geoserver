@@ -113,7 +113,7 @@ RUN rm -rf geomesa-cassandra-dist_2.11-3.0.0-bin.tar.gz /usr/share/geoserver/web
 RUN cd /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/ && rm -rf commons-lang3-3.7.jar commons-pool-1.5.4.jar commons-text-1.4.jar
 RUN rm -rf geomesa-cassandra_2.11-3.0.0
 
-RUN ls /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
+RUN ls /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/·
 
 # install elastic plugins
 COPY elasticgeo-2.16.0.jar /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
