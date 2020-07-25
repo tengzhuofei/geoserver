@@ -124,6 +124,7 @@ COPY geoserver-2.17-SNAPSHOT-jms-cluster-plugin.zip /tmp/
 
 RUN unzip -o -d /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/ /tmp/geoserver-2.17-SNAPSHOT-jms-cluster-plugin.zip
 
+
 # Expose GeoServer's default port
 EXPOSE 8080
 
