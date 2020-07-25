@@ -120,10 +120,12 @@ COPY elasticgeo-2.16.0.jar /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/
 
 #install jms cluster
 
-COPY geoserver-2.17-SNAPSHOT-jms-cluster-plugin.zip /tmp/
+COPY geoserver-2.17-SNAPSHOT-jms-cluster-plugin.zip conf/* /tmp/
 
-RUN unzip -o -d /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/ /tmp/geoserver-2.17-SNAPSHOT-jms-cluster-plugin.zip
+RUN unzip -o -d /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/ /tmp/geoserver-2.17-SNAPSHOT-jms-cluster-plugin.zip && mkdir -p /usr/share/geoserver/data_dir/cluster/ && mv /tmp/*.properties /usr/share/geoserver/data_dir/cluster/
 
+
+RUN /usr/share/geoserver/data_dir/cluster/
 
 # Expose GeoServer's default port
 EXPOSE 8080
