@@ -5,6 +5,9 @@ set -e
 sed -i "s|^instanceName=.*|instanceName=${instanceName}|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
 sed -i "s|^toggleMaster=.*|toggleMaster=${toggleMaster}|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
 
+#brokerURL=tcp\://gsbroker\:61666
+sed -i "s|^brokerURL=.*|brokerURL=tcp\://${brokerServiceName}\:61666|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
+
 sed -ie '/activemq.transportConnectors.server.uri/d' /usr/share/geoserver/data_dir/cluster/embedded-broker.properties
 
 echo "activemq.transportConnectors.server.uri=tcp://${brokerServiceName}:61666?maximumConnections=1000&wireFormat.maxFrameSize=104857600&jms.useAsyncSend=true" >> /usr/share/geoserver/data_dir/cluster/embedded-broker.properties
