@@ -5,7 +5,7 @@ LABEL maintainer "Mikko Rauhala <mikko@meteo.fi>"
 ARG GEOSERVER_VERSION="2.17.0"
 
 # persistent / runtime deps
-RUN apt-get update && apt-get install -y --no-install-recommends libnetcdf-c++4 curl unzip && rm -r /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends libnetcdf-c++4 curl unzip vim && rm -r /var/lib/apt/lists/*
 
 ENV NOTO_FONTS="NotoSans-unhinted NotoSerif-unhinted NotoMono-hinted" \
     GOOGLE_FONTS="Open%20Sans Roboto Lato Ubuntu" \
@@ -124,9 +124,6 @@ COPY geoserver-2.17-SNAPSHOT-jms-cluster-plugin.zip conf/* /tmp/
 
 RUN unzip -o -d /usr/share/geoserver/webapps/geoserver/WEB-INF/lib/ /tmp/geoserver-2.17-SNAPSHOT-jms-cluster-plugin.zip && mkdir -p /usr/share/geoserver/data_dir/cluster/ && mv /tmp/*.properties /usr/share/geoserver/data_dir/cluster/
 
-
-RUN /usr/share/geoserver/data_dir/cluster/
-
 # Expose GeoServer's default port
 EXPOSE 8080
 
@@ -143,7 +140,7 @@ RUN mkdir -p $GEOSERVER_HOME && \
 RUN chmod +x /docker-entrypoint.sh
 
 ### Containers should NOT run as root as a good practice
-USER 101010
+#USER 101010
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["geoserver"]
