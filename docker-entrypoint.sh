@@ -5,9 +5,9 @@ echo "ls /usr/share/geoserver/data_dir/"
 
 ls /usr/share/geoserver/data_dir
 
-ls /tmp
-
 mkdir -p /usr/share/geoserver/data_dir/cluster/ && cp /tmp/*.properties /usr/share/geoserver/data_dir/cluster/
+
+rm -rf  /usr/share/geoserver/data_dir/cluster/broker.xml
 
 echo "ls /usr/share/geoserver/data_dir/cluster/"
 ls /usr/share/geoserver/data_dir/cluster/
@@ -15,6 +15,12 @@ ls /usr/share/geoserver/data_dir/cluster/
 # set env
 sed -i "s|^instanceName=.*|instanceName=${instanceName}|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
 sed -i "s|^toggleMaster=.*|toggleMaster=${toggleMaster}|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
+sed -i "s|^toggleSlave=.*|toggleSlave=${toggleSlave}|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
+sed -i "s|^connection.maxwait=.*|connection.maxwait=2000|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
+sed -i "s|^embeddedBroker=.*|embeddedBroker=disabled|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
+sed -i "s|^connection=.*|connection=${brokerConnection}|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
+sed -i "s|^readOnly=.*|readOnly=${brokerReadOnly}|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
+
 
 #brokerURL=tcp\://gsbroker\:61666
 sed -i "s|^brokerURL=.*|brokerURL=tcp\://${brokerServiceName}\:61666|g" /usr/share/geoserver/data_dir/cluster/cluster.properties
